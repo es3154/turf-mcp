@@ -1,3 +1,5 @@
+![My Project Logo](./logo.png)
+
 # Turf-MCP
 
 基于 Turf.js 构建的地理空间分析 MCP 服务。
@@ -13,23 +15,30 @@ Turf-MCP 是一个 Python 库，提供基于 Turf.js 的地理空间分析功能
 ##### Windows
 ```json
  {
+  "mcpServers": {
    "turf-mcp-server": {
       "command": "cmd",
       "args": ["/c", "uvx", "turf-mcp"],
       "type": "stdio"
-    }
+    } 
+  }
 }
 ```
 ##### macOS/Linux
 ```json
  {
+  "mcpServers": {
    "turf-mcp-server": {
       "command": "uvx",
       "args": ["turf-mcp"],
       "type": "stdio"
-    }
+    } 
+  }
 }
 ```
+
+
+
 #### 远程模式
 ```shell
 # sse
@@ -43,9 +52,11 @@ uvx turf-mcp -t http -p 8080
 对应的mcp server配置
 ```json
  {
-  "turf-mcp-server": {
+  "mcpServers": {
+     "turf-mcp-server": {
       "url": "http://127.0.0.1:8000/sse"
-    }
+    } 
+  }
 }
 ```
 
@@ -226,3 +237,4 @@ MIT License
 
 - 文档: [GitHub Repository](https://github.com/es3154/turf-mcp)
 - 问题: [GitHub Issues](https://github.com/es3154/turf-mcp/issues)
+
