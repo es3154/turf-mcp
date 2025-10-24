@@ -236,7 +236,7 @@ Turf.js MCP 服务器 - 地理空间分析和测量工具
 请根据具体需求选择合适的模块前缀调用相应功能。
 """
 
-main_mcp = FastMCP("turf-mcp-server", instructions=instructions)
+app = FastMCP("turf-mcp-server", instructions=instructions)
 
 
 async def install_turf():
@@ -275,21 +275,21 @@ async def init():
     await install_turf()
 
     # 导入所有 MCP 服务器
-    await main_mcp.import_server(aggregation_mcp, prefix="aggregation")
-    await main_mcp.import_server(booleans_mcp, prefix="booleans")
-    await main_mcp.import_server(classification_mcp, prefix="classification")
-    await main_mcp.import_server(coordinate_mutation_mcp, prefix="coordinate_mutation")
-    await main_mcp.import_server(data_mcp, prefix="data")
-    await main_mcp.import_server(feature_conversion_mcp, prefix="feature_conversion")
-    await main_mcp.import_server(grid_mcp, prefix="grid")
-    await main_mcp.import_server(helper_mcp, prefix="helper")
-    await main_mcp.import_server(interpolation_mcp, prefix="interpolation")
-    await main_mcp.import_server(joins_mcp, prefix="joins")
-    await main_mcp.import_server(measurement_mcp, prefix="measurement")
-    await main_mcp.import_server(misc_mcp, prefix="misc")
-    await main_mcp.import_server(random_mcp, prefix="random")
-    await main_mcp.import_server(transformation_mcp, prefix="transformation")
-    await main_mcp.import_server(unit_conversion_mcp, prefix="unit_conversion")
+    await app.import_server(aggregation_mcp, prefix="aggregation")
+    await app.import_server(booleans_mcp, prefix="booleans")
+    await app.import_server(classification_mcp, prefix="classification")
+    await app.import_server(coordinate_mutation_mcp, prefix="coordinate_mutation")
+    await app.import_server(data_mcp, prefix="data")
+    await app.import_server(feature_conversion_mcp, prefix="feature_conversion")
+    await app.import_server(grid_mcp, prefix="grid")
+    await app.import_server(helper_mcp, prefix="helper")
+    await app.import_server(interpolation_mcp, prefix="interpolation")
+    await app.import_server(joins_mcp, prefix="joins")
+    await app.import_server(measurement_mcp, prefix="measurement")
+    await app.import_server(misc_mcp, prefix="misc")
+    await app.import_server(random_mcp, prefix="random")
+    await app.import_server(transformation_mcp, prefix="transformation")
+    await app.import_server(unit_conversion_mcp, prefix="unit_conversion")
 
 Transport = Literal["stdio", "http", "sse", "streamable-http"]
 
@@ -297,9 +297,13 @@ def setup(transport: Transport="stdio", port=8000):
     """主函数"""
     asyncio.run(init())
     if transport == "stdio":
-        main_mcp.run(transport=transport)
+        app.run(transport=transport)
     else:
-        main_mcp.run(transport=transport, host="0.0.0.0", port=port)
+        app.run(transport=transport, host="0.0.0.0", port=port)
+
+
+async def create_server():
+    setup(transport="sse")
 
 if __name__ == "__main__":
     setup(transport="sse")
