@@ -303,7 +303,8 @@ def setup(transport: Transport="stdio", port=8000):
 
 
 async def create_server():
-    setup(transport="sse")
+    await init()
+    app.run(transport='sse', host="0.0.0.0")
 
 if __name__ == "__main__":
     setup(transport="sse")
