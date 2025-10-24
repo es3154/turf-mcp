@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "turf-mcp"
+version = "0.2.1"
+description = "基于 Turf.js 构建的地理空间分析 MCP 服务。提供空间几何图形的测量、空间关系判断、坐标转换与偏移等核心功能。"
+authors = [
+    {name = "zhangjy07", email = "893928676@qq.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastmcp>=2.12.5",
+    "pydantic>=2.12.3",
+    "httpx>=0.28.1"
+]
+keywords = ["geospatial", "analysis", "turf", "mcp", "geometry"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: GIS",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+
+[project.scripts]
+turf-mcp = "turf_mcp.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/zhangjy07/turf-mcp"
+Repository = "https://github.com/zhangjy07/turf-mcp"
+Documentation = "https://github.com/zhangjy07/turf-mcp#readme"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["turf_mcp*"]
+exclude = ["test*", "node_modules*", "*.html"]
