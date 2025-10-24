@@ -307,4 +307,4 @@ async def create_server():
     app.run(transport='sse', host="0.0.0.0")
 
 if __name__ == "__main__":
-    setup(transport="sse")
+    setup(transport="http")
